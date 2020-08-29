@@ -2,8 +2,6 @@
 
 Generate a summary of any video through its subtitles.
 
-This is the community driven approach towards the summarization by the **[OpenGenus](https://github.com/opengenus)** community.
-
 # Installing vidsum
 
 In order to install vidsum, simply clone the repository to a local directory. You can do this by running the following commands:
@@ -47,4 +45,4 @@ For future development to this approach, see [Wiki](https://github.com/OpenGenus
 
 # Contributions
 
-All contributions are welcomed. Please see [COMMIT_TEMPLATE.md](https://github.com/OpenGenus/vidsum/blob/master/.github/COMMIT_TEMPLATE.md) before making pull requests to this repository. See all contributors [here](https://github.com/OpenGenus/vidsum/graphs/contributors).
+All contributions are welcomed. Please see [COMMIT_TEMPLATE.md](https://github.com/opencoca/vidsum/blob/master/.github/COMMIT_TEMPLATE.md) before making pull requests to this repository. See all contributors [here](https://github.com/opencoca/vidsum/graphs/contributors).
