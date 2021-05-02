@@ -171,7 +171,7 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
         True
 
     """
-    regions = find_summary_regions(subtitles, 60, "english")
+    regions = find_summary_regions(subtitles, 120, "english")
     summary = create_summary(filename, regions)
     base, ext = os.path.splitext(filename)
     output = "{0}_1.mp4".format(base)
