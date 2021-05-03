@@ -68,6 +68,10 @@ def srt_to_txt(srt_file):
         text += item.text.replace("\n", "").strip("...").replace(
                                      ".", "").replace("?", "").replace("!", "")
         text += ". "
+    
+    text_file = open("transcript.txt","a")
+    text_file.writelines(L) for L = text
+    
     return text
 
 
