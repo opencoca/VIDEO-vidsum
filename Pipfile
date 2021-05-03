@@ -1,0 +1,33 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+breadability = "==0.1.20"
+certifi = "==2017.7.27.1"
+chardet = "==3.0.4"
+decorator = "*"
+docopt = "==0.6.2"
+idna = "==2.6"
+imageio = "*"
+lxml = "*"
+moviepy = "==0.2.3.2"
+nltk = "==3.2.5"
+numpy = "*"
+olefile = "==0.44"
+pysrt = "==1.1.1"
+pytube = "==6.4.2"
+requests = "*"
+six = "*"
+sumy = "==0.7.0"
+tqdm = "==4.11.2"
+urllib3 = "==1.22"
+webvtt-py = "*"
+Pillow = ">=4.3.0"
+youtube_dl = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
