@@ -182,11 +182,11 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
     return True
 
 
-def download_video_srt(subs):
+def download_video_srt(url):
     """ Downloads specified Youtube video's subtitles as a vtt/srt file.
 
     Args:
-        subs(str): Full url of Youtube video
+        url: Full url of Youtube video
 
     Returns:
         True
@@ -208,7 +208,7 @@ def download_video_srt(subs):
     movie_filename = ""
     subtitle_filename = ""
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        # ydl.download([subs])
+        # ydl.download([url])
         result = ydl.extract_info("{}".format(url), download=True)
         movie_filename = ydl.prepare_filename(result)
         subtitle_info = result.get("requested_subtitles")
@@ -225,7 +225,7 @@ if __name__ == '__main__':
     parser.add_argument('-i', '--video-file', help="Input video file")
     parser.add_argument('-s', '--subtitles-file',
                         help="Input subtitle file (srt)")
-    parser.add_argument('-u', '--url', help="Video url", type=str)
+    parser.add_argument('-u', '--url', help="YouTube video url", type=str)
     parser.add_argument('-k', '--keep-original-file',
                         help="Keep original movie & subtitle file",
                         action="store_true", default=False)
