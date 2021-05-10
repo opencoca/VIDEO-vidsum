@@ -68,10 +68,7 @@ def srt_to_txt(srt_file):
         text += item.text.replace("\n", "").strip("...").replace(
                                      ".", "").replace("?", "").replace("!", "")
         text += ". "
-    
-    text_file = open("transcript.txt","a")
-    text_file.writelines(L) for L = text
-    
+
     return text
 
 
@@ -143,17 +140,29 @@ def find_summary_regions(srt_filename, duration=30, language="english"):
             total_time = time_regions(summary)
     return summary
 
+def create_screenshots_from_regions(filename, regions):
+    """This takes a set of time regions and a video file and creates screenshots
+    """
+
+    screenshots = []
+    regions = [round((sum(tuple)/2),3) for tuple in regions]
+    for region in regions:
+        grab_shot = ("ffmpeg -ss %s  -i %s -vframes 1 -q:v 2 %s.jpg" % (region, filename, region))
+        os.system(grab_shot)
+    return regions
+
+
 
 def create_summary(filename, regions):
     """ Join segments
 
     Args:
-        filename(str): filename
+        filename(Video): filename
         regions():
     Returns:
         VideoFileClip: joined subclips in segment
-
     """
+
     subclips = []
     input_video = VideoFileClip(filename)
     last_end = 0
@@ -163,6 +172,8 @@ def create_summary(filename, regions):
         last_end = end
     return concatenate_videoclips(subclips)
 
+def add_shots_to_str(regions):
+    os.system("ipython add_images_to_srt.py")
 
 def get_summary(filename="1.mp4", subtitles="1.srt"):
     """ Abstract function
@@ -173,16 +184,19 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
 
     Returns:
         True
-
     """
-    regions = find_summary_regions(subtitles, 120, "english")
-    summary = create_summary(filename, regions)
+
+    regions = find_summary_regions(subtitles, 60, "english")
+    shot_times = create_screenshots_from_regions(filename,regions)
+    add_shots_to_str(shot_times)
+    #Truning off sumery video creation
+    # summary = create_summary(filename, regions)
     base, ext = os.path.splitext(filename)
     output = "{0}_1.mp4".format(base)
     summary.to_videofile(
                 output,
                 codec="libx264",
-                temp_audiofile="temp.m4a", remove_temp=True, audio_codec="aac")
+                temp_audiofile="temp.m4a", remove_temp=False, audio_codec="aac")
     return True
 
 
@@ -194,7 +208,6 @@ def download_video_srt(url):
 
     Returns:
         True
-
 
     The video will be downloaded as 1.mp4 and its subtitles as 1.(lang).srt
     Both, the video and its subtitles, will be downloaded to the same location
@@ -246,9 +259,13 @@ if __name__ == '__main__':
     else:
         # download video with subtitles
         movie_filename, subtitle_filename = download_video_srt(url)
+        print("converting subtitle file,", subtitle_filename)
+        # subtitle_filename = "1.en.srt"
         summary_retrieval_process = multiprocessing.Process(target=get_summary, args=(movie_filename, subtitle_filename))
         summary_retrieval_process.start()
         summary_retrieval_process.join()
+        os.system("python vtt_to_srt.py 1.en.vtt")
+        add_shots_to_str("")
         if not keep_original_file:
             os.remove(movie_filename)
             os.remove(subtitle_filename)

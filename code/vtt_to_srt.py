@@ -38,7 +38,7 @@ def convert_content(file_contents):
             completed_lines.append(line)
 
     lines = srt_segment_reduce(completed_lines)
-
+    lines = srt_segment_number(lines)
     return "\n".join(lines)
 
 
@@ -62,6 +62,29 @@ def srt_segment_reduce(lines):
                 i -= 1
         i += 1
     #import pdb; pdb.set_trace()
+    return lines
+
+def srt_segment_number(lines):
+    """
+    Number segments for use as an SRT file
+
+    Ars:
+        lines: a list of lines
+
+    Returns:
+        srt: a list of numbered segments
+    """
+
+    i = 0
+    seg = 1
+    while i < len(lines):
+        if lines[i].startswith("00:0"):
+            lines.insert(i, str(seg))
+            seg += 1
+            i +=2
+        else:
+            i +=1
+
     return lines
 
 def file_create(str_name_file, str_data):

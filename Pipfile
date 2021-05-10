@@ -26,6 +26,8 @@ urllib3 = "==1.22"
 webvtt-py = "*"
 Pillow = ">=4.3.0"
 youtube_dl = "*"
+ipython = "*"
+vtt-to-srt3 = "*"
 
 [dev-packages]
 
