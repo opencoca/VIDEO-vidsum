@@ -6,6 +6,7 @@ import re
 from itertools import starmap
 import multiprocessing
 
+import sys
 import pysrt
 import imageio
 import youtube_dl
@@ -189,8 +190,7 @@ def get_summary(filename="1.mp4", subtitles="1.srt"):
     regions = find_summary_regions(subtitles, 60, "english")
     shot_times = create_screenshots_from_regions(filename,regions)
     add_shots_to_str(shot_times)
-    #Truning off sumery video creation
-    # summary = create_summary(filename, regions)
+    summary = create_summary(filename, regions)
     base, ext = os.path.splitext(filename)
     output = "{0}_1.mp4".format(base)
     summary.to_videofile(
@@ -229,7 +229,11 @@ def download_video_srt(url):
         result = ydl.extract_info("{}".format(url), download=True)
         movie_filename = ydl.prepare_filename(result)
         subtitle_info = result.get("requested_subtitles")
-        subtitle_language = list(subtitle_info.keys())[0]
+        try:
+            subtitle_language = list(subtitle_info.keys())[0]
+        except:
+            print("No subtitles found for this video.")
+            quit()
         subtitle_ext = subtitle_info.get(subtitle_language).get("ext")
         subtitle_filename = movie_filename.replace(".mp4", ".%s.%s" %
                                                    (subtitle_language,
@@ -249,6 +253,10 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    if(not(any([value  for key, value in vars(args).items()]))):
+        parser.print_help()
+        sys.exit(0)
+
     url = args.url
     keep_original_file = args.keep_original_file
 
@@ -266,6 +274,7 @@ if __name__ == '__main__':
         summary_retrieval_process.join()
         os.system("python vtt_to_srt.py 1.en.vtt")
         add_shots_to_str("")
+        os.system(("ipython punctuate_md.py"))
         if not keep_original_file:
             os.remove(movie_filename)
             os.remove(subtitle_filename)

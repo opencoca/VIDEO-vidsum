@@ -35,7 +35,7 @@ for index, segment in enumerate(srt_segments):
         times = [time_to_seconds(time) for time in times]
         if times[0] < float(image[0:-4]) < times[1]:
             image_string = '![]({} "image alt text")'.format(image)
-            srt_segments[index][2] = "{} \n{} \n ".format( segment[2], image_string)
+            srt_segments[index][2] = "{} \n{} \n ".format(segment[2],image_string)
 
 f = open("1.en.md","w")
 f.writelines(["{}\n".format(segment[2]) for segment in srt_segments])

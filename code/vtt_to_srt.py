@@ -55,7 +55,7 @@ def srt_segment_reduce(lines):
     i = 0
     while i < len(lines):
         if i+1 < len(lines):
-            if lines[i].startswith("00:0") and lines[i+1].startswith("00:0"):
+            if lines[i].startswith("00:") and lines[i+1].startswith("00:"):
                 lines[i] = lines[i].split("-->")[0] + " --> " + lines[i+1].split("-->")[-1]
                 lines.pop(i+1)
 
@@ -78,7 +78,7 @@ def srt_segment_number(lines):
     i = 0
     seg = 1
     while i < len(lines):
-        if lines[i].startswith("00:0"):
+        if lines[i].startswith("00:"):
             lines.insert(i, str(seg))
             seg += 1
             i +=2
