@@ -9,7 +9,7 @@ srt_segment_list = [segment for segment in srt_content.split("\n") if segment]
 srt_segments = list(zip(srt_segment_list[0::3],srt_segment_list[1::3],(srt_segment_list[2::3])))
 srt_segments = [list(segment) for segment in srt_segments]
 
-def listOfTuples(a, b):
+def list_of_tuples(a, b):
     return list(map(lambda x, y:(x,y), a, b))
 
 def time_to_seconds(time):
