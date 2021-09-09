@@ -37,12 +37,12 @@ def punctuate(text, url= punctuate_api_endpoint ):
         return {"punctuated_text": punctuated_text +"." , "fragment": fragment}
 
 def defragment_text(blocks):
-    for i in range(len(blocks)):
-        next = i+1
-        merge(blocks[i], punctuate(blocks[i]['text']))
-        if('fragment' in blocks[i] and next < len(blocks)):
-            blocks[next]['text'] = "{} {}".format(blocks[i]['fragment'], blocks[next]['text'])
-        if next == len(blocks):
+    for item in range(len(blocks)):
+        next_item = i+1
+        merge(blocks[item], punctuate(blocks[item]['text']))
+        if('fragment' in blocks[item] and next < len(blocks)):
+            blocks[next_item]['text'] = "{} {}".format(blocks[item]['fragment'], blocks[next_item]['text'])
+        if next_item == len(blocks):
             break
 
 defragment_text(block_list)
