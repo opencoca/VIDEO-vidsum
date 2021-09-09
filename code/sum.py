@@ -116,7 +116,6 @@ def find_summary_regions(srt_filename, duration=30, language="english"):
         list: segment of subtitles as "summary"
 
     """
-    srt_file = pysrt.open(srt_filename)
 
     enc = chardet.detect(open(srt_filename, "rb").read())['encoding']
     srt_file = pysrt.open(srt_filename, encoding=enc)
