@@ -6,7 +6,6 @@ import os
 import re
 import sys
 import hashlib
-from stat import *
 
 def convert_content(file_contents):
     """Convert convert of vtt file to str format
@@ -14,9 +13,10 @@ def convert_content(file_contents):
        Keyword arguments:
        file_contents
        """
-    replacement = re.sub(r"(\d\d:\d\d:\d\d).(\d\d\d) --> (\d\d:\d\d:\d\d).(\d\d\d)(?:[ \-\w]+:[\w\%\d:]+)*\n", r"\1,\2 --> \3,\4\n", file_contents)
-    replacement = re.sub(r"(\d\d:\d\d).(\d\d\d) --> (\d\d:\d\d).(\d\d\d)(?:[ \-\w]+:[\w\%\d:]+)*\n", r"\1,\2 --> \3,\4\n", replacement)
-    replacement = re.sub(r"(\d\d).(\d\d\d) --> (\d\d).(\d\d\d)(?:[ \-\w]+:[\w\%\d:]+)*\n", r"\1,\2 --> \3,\4\n", replacement)
+    first_n_second_third_n_forth = r"\1,\2 --> \3,\4\n"
+    replacement = re.sub(r"(\d\d:\d\d:\d\d).(\d\d\d) --> (\d\d:\d\d:\d\d).(\d\d\d)(?:[ \-\w]+:[\w\%\d:]+)*\n", first_n_second_third_n_forth, file_contents)
+    replacement = re.sub(r"(\d\d:\d\d).(\d\d\d) --> (\d\d:\d\d).(\d\d\d)(?:[ \-\w]+:[\w\%\d:]+)*\n", first_n_second_third_n_forth, replacement)
+    replacement = re.sub(r"(\d\d).(\d\d\d) --> (\d\d).(\d\d\d)(?:[ \-\w]+:[\w\%\d:]+)*\n", first_n_second_third_n_forth, replacement)
     replacement = re.sub(r"WEBVTT\n", "", replacement)
     replacement = re.sub(r"Kind:[ \-\w]+\n", "", replacement)
     replacement = re.sub(r"Language:[ \-\w]+\n", "", replacement)
