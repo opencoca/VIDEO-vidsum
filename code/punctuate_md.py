@@ -3,7 +3,7 @@ import requests
 from pprint import pprint
 
 #set punctuation API url for use with requests
-url = "http://bark.phon.ioc.ee/punctuator"
+punctuate_api_endpoint = "http://bark.phon.ioc.ee/punctuator"
 
 #Open the markdown file so we can punctuate it
 my_file = open("1.en.md")
@@ -25,7 +25,7 @@ block_list = [{"image": block[0], "text": block[1]} for block in block_list]
 def merge(dict1, dict2):
     return(dict1.update(dict2))
 
-def punctuate(text, url="http://bark.phon.ioc.ee/punctuator" ):
+def punctuate(text, url= punctuate_api_endpoint ):
     data = {"text": text}
     punctuated_text = requests.post(url, data=data).text
     if punctuated_text[-2] == ".":
