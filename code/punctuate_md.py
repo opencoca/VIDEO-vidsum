@@ -38,9 +38,9 @@ def punctuate(text, url= punctuate_api_endpoint ):
 
 def defragment_text(blocks):
     for item in range(len(blocks)):
-        next_item = i+1
+        next_item = item+1
         merge(blocks[item], punctuate(blocks[item]['text']))
-        if('fragment' in blocks[item] and next < len(blocks)):
+        if('fragment' in blocks[item] and next_item < len(blocks)):
             blocks[next_item]['text'] = "{} {}".format(blocks[item]['fragment'], blocks[next_item]['text'])
         if next_item == len(blocks):
             break
