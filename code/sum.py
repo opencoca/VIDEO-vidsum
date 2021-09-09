@@ -164,11 +164,11 @@ def create_summary(filename, regions):
 
     subclips = []
     input_video = VideoFileClip(filename)
-    last_end = 0
+    # last_end = 0
     for (start, end) in regions:
         subclip = input_video.subclip(start, end)
         subclips.append(subclip)
-        last_end = end
+        # last_end = end
     return concatenate_videoclips(subclips)
 
 def add_shots_to_str(regions):
@@ -229,7 +229,7 @@ def download_video_srt(url):
         subtitle_info = result.get("requested_subtitles")
         try:
             subtitle_language = list(subtitle_info.keys())[0]
-        except:
+        except IndexError:
             print("No subtitles found for this video.")
             quit()
         subtitle_ext = subtitle_info.get(subtitle_language).get("ext")
@@ -266,7 +266,6 @@ if __name__ == '__main__':
         # download video with subtitles
         movie_filename, subtitle_filename = download_video_srt(url)
         print("converting subtitle file,", subtitle_filename)
-        # subtitle_filename = "1.en.srt"
         summary_retrieval_process = multiprocessing.Process(target=get_summary, args=(movie_filename, subtitle_filename))
         summary_retrieval_process.start()
         summary_retrieval_process.join()
