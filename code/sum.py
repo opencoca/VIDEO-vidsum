@@ -144,7 +144,6 @@ def create_screenshots_from_regions(filename, regions):
     """This takes a set of time regions and a video file and creates screenshots
     """
 
-    screenshots = []
     regions = [round((sum(tuple)/2),3) for tuple in regions]
     for region in regions:
         grab_shot = ("ffmpeg -ss %s  -i %s -vframes 1 -q:v 2 %s.jpg" % (region, filename, region))
