@@ -32,9 +32,9 @@ def convert_content(file_contents):
     completed_lines = list()
     for line in nospaces:
         #hash the line
-        hashValue = hashlib.sha512(line.rstrip().encode('utf-8')).hexdigest()
-        if hashValue not in completed_lines_hash:
-            completed_lines_hash.add(hashValue)
+        hashed_value = hashlib.sha512(line.rstrip().encode('utf-8')).hexdigest()
+        if hashed_value not in completed_lines_hash:
+            completed_lines_hash.add(hashed_value)
             completed_lines.append(line)
 
     lines = srt_segment_reduce(completed_lines)
