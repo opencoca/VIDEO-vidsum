@@ -54,14 +54,13 @@ def srt_segment_reduce(lines):
 
     i = 0
     while i < len(lines):
-        if i+1 < len(lines):
-            if lines[i].startswith("00:") and lines[i+1].startswith("00:"):
-                lines[i] = lines[i].split("-->")[0] + " --> " + lines[i+1].split("-->")[-1]
-                lines.pop(i+1)
-
-                i -= 1
+        if i+1 < len(lines) and \
+           lines[i].startswith("00:") and \
+           lines[i+1].startswith("00:"):
+            lines[i] = lines[i].split("-->")[0] + " --> " + lines[i+1].split("-->")[-1]
+            lines.pop(i+1)
+            i -= 1
         i += 1
-    #import pdb; pdb.set_trace()
     return lines
 
 def srt_segment_number(lines):

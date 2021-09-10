@@ -164,11 +164,9 @@ def create_summary(filename, regions):
 
     subclips = []
     input_video = VideoFileClip(filename)
-    # last_end = 0
     for (start, end) in regions:
         subclip = input_video.subclip(start, end)
         subclips.append(subclip)
-        # last_end = end
     return concatenate_videoclips(subclips)
 
 def add_shots_to_str(regions):
