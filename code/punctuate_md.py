@@ -67,8 +67,13 @@ block_list[0] = {
 formated_text = ["{}\n\n{}\n\n".format(block['image'], block['punctuated_text']) for block in block_list]
 formated_text = [block.replace(" i "," I ") for block in formated_text]
 formated_text = [block.replace(" i'm "," I'm ") for block in formated_text]
+formated_text = [block.replace(" I'De"," I'de") for block in formated_text]
 formated_text = [block.replace("\'S ","\'s ") for block in formated_text]
 formated_text = [block.replace("\'Ve ","\'ve ") for block in formated_text]
+formated_text = [block.replace("\'Re","\'re") for block in formated_text]
+formated_text = [block.replace(" tor "," Tor ") for block in formated_text]
+formated_text = [block.replace("\n.\n","\n\n") for block in formated_text]
+
 
 f = open("1.final.en.md","w")
 f.writelines( formated_text )
