@@ -3,6 +3,8 @@
 Generate a clean Markdown document of any video 📺 anywhere and anytime
 Markdownification works through its subtitles, sumerization locating the important bits.
 
+[![Run on Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/opencoca/vidsum/blob/master/Video_to_Markdown.ipynb)
+
 ## Installing vidsum
 
 In order to install vidsum, simply clone the repository to a local directory. You can do this by running the following commands:
