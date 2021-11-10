@@ -215,6 +215,7 @@ def download_video_srt(url):
         'outtmpl': '1.%(ext)s',
         'subtitlesformat': 'srt',
         'writeautomaticsub': True,
+        'useragent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0'
         # 'allsubtitles': True # Get all subtitles
     }
 
