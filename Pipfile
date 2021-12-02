@@ -28,8 +28,9 @@ Pillow = ">=4.3.0"
 youtube_dl = "*"
 ipython = "*"
 vtt-to-srt3 = "*"
+matplotlib = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.7"
+python_version = "3"
