@@ -22,37 +22,77 @@ Please note that vidsum requires the following packages to be installed:
 - [pytube](https://github.com/nficano/pytube)
 - [sumy](https://github.com/miso-belica/sumy)
 
-If you do not have these packages installed, then you can do so by running this command:
+Prerequisites:
 
-```sh
-pip install -r requirements.txt
+-   Install Required Packages:
 
-```
+    Before starting, ensure you have the necessary packages installed. Run the following command in your terminal:
 
-## Usage
+    ```
 
-To generate summary of a video file `sample.mp4` with subtitle file `subtitle.srt` :
+    pip install -r requirements.txt
 
-```python
-python sum.py -i sample.mp4 -s subtitle.srt
-```
+    ```
 
-To summarize a YouTube video from its url:
+Usage:
 
-```python
-python sum.py -u <url>
-```
+Generating a Summary from a Local Video File and Subtitle:
 
-If you want to remain the downloaded YouTube video and subtitles:
+1.  Specify video and subtitle files:
 
-```python
-python sum.py -u <url> -k
-```
+    ```
 
-## Future developments
+    python sum.py -i <video_file_path> -s <subtitle_file_path>
 
-For future development to this approach, see [Wiki](https://github.com/OpenGenus/vidsum/wiki/Future_developments) and check out other [approaches](https://github.com/OpenGenus/vidsum/wiki/Other-approaches).
+    ```
 
-## Contributions
+    -   Replace `<video_file_path>` with the actual path to your video file (e.g., `sample.mp4`).
+    -   Replace `<subtitle_file_path>` with the path to the corresponding subtitle file (e.g., `subtitle.srt`).
+    
 
-All contributions are welcomed. Please see [COMMIT_TEMPLATE.md](https://github.com/opencoca/vidsum/blob/master/.github/COMMIT_TEMPLATE.md) before making pull requests to this repository. See all contributors [here](https://github.com/opencoca/vidsum/graphs/contributors).
+Summarizing a YouTube Video:
+============================
+
+1.  Provide the video URL:
+
+    ```
+
+    python sum.py -u <youtube_video_url>
+
+    ```
+
+    -   Replace `<youtube_video_url>` with the actual URL of the YouTube video you want to summarize.
+
+Optional: Retaining Downloaded YouTube Video and Subtitles:
+
+-   To keep the downloaded video and subtitles after summarization, add the `-k` flag:
+
+    ```
+
+    python sum.py -u <youtube_video_url> -k
+
+    ```
+
+**Key Points:**
+
+-   The `sum.py` script handles both local video files and YouTube videos.
+-   For YouTube videos, it automatically downloads the video and subtitles (if available).
+-   The `-k` flag is optional and only used to preserve downloaded YouTube content.
+
+**Additional Notes:**
+
+-   Ensure you have a stable internet connection for summarizing YouTube videos.
+-   The quality of the summary depends on the quality of the input video and subtitles.
+-   Consider exploring additional options or parameters offered by the `sum.py` script for further customization.
+
+Future Developments
+===================
+
+For more information on future developments to this approach, please see the [Wiki](https://github.com/opencoca/vidsum/wiki/Future_developments) page. You can also check out other [approaches](https://github.com/OpenGenus/vidsum/wiki/Other-approaches) that have been implemented.
+
+Contributions
+=============
+
+All contributions are welcome! If you would like to make a pull request to this repository, please review the [COMMIT_TEMPLATE.md](https://github.com/opencoca/vidsum/blob/master/.github/COMMIT_TEMPLATE.md) file before doing so. This will help ensure that your contribution meets the project's guidelines and can be easily reviewed and merged.
+
+You can see a list of all contributors to this project [here](https://github.com/opencoca/vidsum/graphs/contributors). Thank you for considering contributing to vidsum! We appreciate your help in making this project the best it can be.
